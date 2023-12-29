@@ -5,7 +5,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 PERCENTAGE_VALIDATOR = [MinValueValidator(0), MaxValueValidator(100)]
 
 class Ingrediente(models.Model):
-    codice = models.CharField(max_length=20)
+    codice = models.CharField(primary_key=True, max_length=20)
     descrizione = models.CharField(max_length=200)
     zuccheri = models.DecimalField(max_digits=3, decimal_places=2, validators=PERCENTAGE_VALIDATOR)
     grassi = models.DecimalField(max_digits=3, decimal_places=2, validators=PERCENTAGE_VALIDATOR)
