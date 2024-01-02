@@ -6,28 +6,28 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <meta charset="utf-8" />
-    <title>Ricette</title>
+    <title>Ingredienti</title>
 </head>
 
 <body>
     <div class="container">
         <div class="row mt-2">
-            <h3>Ricette</h3>
+            <h3>{{ingrediente.descrizione}}</h3>
         </div>
 
-        <div class="row mt-2">
+        <!-- <div class="row mt-2">
             <div>
-                {% if ricette %}
+                {% if ingredienti %}
                 <ul class="list-group">
-                    {% for ricetta in ricette %}
-                    <li class="list-group-item list-group-item-action"><a href="/ingredienti/{{ ingrediente.codice }}/">{{ingrediente.codice}} - {{ingrediente.descrizione}}</a></li>
+                    {% for ingrediente in ingredienti %}
+                    <li class="list-group-item list-group-item-action"><a href="/ricette/{{ ingrediente.codice }}/">{{ingrediente.codice}} - {{ingrediente.descrizione}}</a></li>
                     {% endfor %}
                 </ul>
                 {% else %}
-                <p>Nessuna ricetta inserita.</p>
+                <p>Nessun ingrediente inserito.</p>
                 {% endif %}
             </div>
-        </div>
+        </div> -->
         
     </div>
 
