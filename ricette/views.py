@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 
-from ricette.forms import RicettaForm
+from ricette.forms import MiscelaForm, MiscelaFormSet, RicettaForm
 from .models import Ingrediente, Ricetta
 from django.views import generic
 from django.contrib import messages
@@ -25,8 +25,9 @@ def aggiungi_ricetta(request):
 			messages.error(request, 'Errore nel salvataggio del form')
 		return redirect("index")
 	ricetta_form = RicettaForm()
+	miscela_form = MiscelaFormSet()
 	ricette = Ricetta.objects.all()
-	return render(request, template_name="ricette/aggiungi-ricetta.html", context={'ricetta_form':ricetta_form, 'ricette':ricette})
+	return render(request, template_name="ricette/aggiungi-ricetta.html", context={'ricetta_form':ricetta_form, 'miscela_form':miscela_form, 'ricette':ricette})
 
 class DetailView(generic.DetailView):
     model = Ingrediente

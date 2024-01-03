@@ -11,15 +11,29 @@
 
 <body>
     <div class="container">
-        <div class="row mt-2">
+        <div class="row mt-4">
             <h3>Aggiungi Ricetta</h3>
         </div>
 
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ricetta_form}}
-            <button class="btn btn-primary my-4" type="submit">Submit</button>
-        </form>
+        <div class="row mt-4">
+            <form method="post" class="row post-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row col-12">
+                    {% for field in ricetta_form %}
+                    <div class="col-4 form-group">
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="row col-12 mt-4">
+                    {{ formset.management_form }}
+                    {% for form in miscela_form %}
+                        {{ form.as_p }}
+                    {% endfor %}
+                </div>
+                <button class="btn btn-primary my-4" type="submit">Salva</button>
+            </form>
+        </div>
 
     </div>
 
