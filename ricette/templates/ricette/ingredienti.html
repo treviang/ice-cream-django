@@ -18,11 +18,54 @@
         <div class="row mt-2">
             <div>
                 {% if ingredienti %}
-                <ul class="list-group">
-                    {% for ingrediente in ingredienti %}
-                    <li class="list-group-item list-group-item-action"><a href="/ingredienti/{{ ingrediente.codice }}/">{{ingrediente.codice}} - {{ingrediente.descrizione}}</a></li>
-                    {% endfor %}
-                </ul>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Codice</th>
+                                <th scope="col">Zuccheri</th>
+                                <th scope="col">Grassi</th>
+                                <th scope="col">SIng</th>
+                                <th scope="col">Altri solidi</th>
+                                <th scope="col">Acqua</th>
+                                <th scope="col">PAC</th>
+                                <th scope="col">POD</th>
+                                <th scope="col">Costo</th>
+                                <th scope="col">Valore Energetico</th>
+                                <th scope="col">Grassi</th>
+                                <th scope="col">Di cui saturi</th>
+                                <th scope="col">Carboidrati</th>
+                                <th scope="col">Di cui zuccheri</th>
+                                <th scope="col">Proteine</th>
+                                <th scope="col">Sale</th>
+                            </tr>
+                        </thead>
+                        {% for ingrediente in ingredienti %}
+                        <tbody>
+                            <tr class="flex-row">
+                                <th scope="row">{{ingrediente.descrizione}}</th>
+                                <th scope="row">{{ingrediente.codice}}</th>
+                                <th scope="row">{{ingrediente.zuccheri}}</th>
+                                <th scope="row">{{ingrediente.grassi}}</th>
+                                <th scope="row">{{ingrediente.SIng}}</th>
+                                <th scope="row">{{ingrediente.altri_solidi}}</th>
+                                <th scope="row">{{ingrediente.acqua}}</th>
+                                <th scope="row">{{ingrediente.PAC}}</th>
+                                <th scope="row">{{ingrediente.POD}}</th>
+                                <th scope="row">{{ingrediente.costo}}</th>
+                                <th scope="row">{{ingrediente.valore_energetico}}</th>
+                                <th scope="row">{{ingrediente.grassi}}</th>
+                                <th scope="row">{{ingrediente.grassi_saturi}}</th>
+                                <th scope="row">{{ingrediente.carboidrati}}</th>
+                                <th scope="row">{{ingrediente.carboidrati_zuccheri}}</th>
+                                <th scope="row">{{ingrediente.proteine}}</th>
+                                <th scope="row">{{ingrediente.sale}}</th>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
                 {% else %}
                 <p>Nessun ingrediente inserito.</p>
                 {% endif %}
