@@ -24,12 +24,16 @@ class Ingrediente(models.Model):
     sale = models.DecimalField(max_digits=6, decimal_places=3)
     data_creazione = models.DateTimeField(auto_now_add=True)
     data_aggiornamento = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.codice +' - ' + self.descrizione
 
 class Ricetta(models.Model):
     codice = codice = models.CharField(primary_key=True, max_length=20)
     descrizione = models.CharField(max_length=200)
     data_creazione = models.DateTimeField(auto_now_add=True)
     data_aggiornamento = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.codice +' - ' + self.descrizione
 
 class Miscela(models.Model):
     ingrediente = models.ForeignKey(Ingrediente, on_delete=models.CASCADE)
