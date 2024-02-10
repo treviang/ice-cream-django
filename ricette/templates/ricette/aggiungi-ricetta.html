@@ -28,15 +28,23 @@
                     </div>
                     {% endfor %}
                 </div>
-                <div class="row col-12 mt-4 miscela-form">
-                    {{ formset.management_form }}
-                    {% for form in miscela_form %}
-                        <div class="col-3">
-                            {{ form.as_p }}
-                        </div>
-                    {% endfor %}
+                <div class="row mt-4 miscela-form">
+                    <div class="row">
+                        {{ formset.management_form }}
+                        {% for form in miscela_form %}
+                            <div class="col-3">
+                                {{ form.ingrediente }}
+                            </div>
+                            <div class="col-1">
+                                {{ form.dosaggio }}
+                            </div>
+                            <div class="col-1">
+                                {{ ingredienti }}
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                <button type="button" id="add-ingrediente">Aggiungi Ingrediente</button>
+                <button class="btn btn-success my-4" type="button" id="add-ingrediente">Aggiungi Ingrediente</button>
                 <button class="btn btn-primary my-4" type="submit">Salva</button>
             </form>
         </div>

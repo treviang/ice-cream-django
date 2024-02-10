@@ -20,6 +20,7 @@ class MiscelaForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'class': 'form-control'
         })
+        self.fields['ingrediente'].widget.attrs['class'] = 'form-select'
     class Meta:
         model = Miscela
         fields = ('ingrediente', 'dosaggio')
