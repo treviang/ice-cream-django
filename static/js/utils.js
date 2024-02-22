@@ -19,24 +19,35 @@ document.addEventListener('DOMContentLoaded', function () {
         tabella.appendChild(newForm)
 
         totalForms.setAttribute('value', `${formNum + 1}`)
+        aggiungiListenerSelectIngredienti();
     }
 
-    let selectIngrediente = document.querySelector('.sel-ingrediente');
-    selectIngrediente.addEventListener('change', showOnChange);
-
-    function showOnChange(e) {
-        var selectedOption = e.target.value;
-
-        let options = {
-            method: 'GET',
-            headers: {}
-        };
-
-        fetch('/get_ingrediente/' + selectedOption, options)
-            .then(response => response.json())
-            .then(body => {
-                document.getElementById('costo').innerHTML = body[0].costo;
-            });
-
-    }
+    aggiungiListenerSelectIngredienti();
 })
+
+function aggiungiListenerSelectIngredienti() {
+    document.querySelectorAll('.sel-ingrediente').forEach(function (element) {
+        element.addEventListener('change', showOnChange);
+    })
+}
+
+function showOnChange(e) {
+    let formRegex = RegExp(`form-(\\d){1}-`, 'g')
+    console.log(e.target.id)
+    var selectedOption = e.target.value;
+
+    let options = {
+        method: 'GET',
+        headers: {}
+    };
+
+    fetch('/get_ingrediente/' + selectedOption, options)
+        .then(response => response.json())
+        .then(body => {
+            const lastIndex = e.target.id.lastIndexOf('-');
+            let prefix = e.target.id.slice(0, lastIndex+1);
+            console.log(e.target.id.split('-').pop()+'costo')
+            document.getElementById(prefix + 'costo').innerHTML = body[0].costo;
+        });
+
+}
