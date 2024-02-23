@@ -23,7 +23,7 @@
                 {% csrf_token %}
                 <div class="row col-12">
                     {% for field in ricetta_form %}
-                    <div class="col-4 form-group">
+                    <div class="col-4">
                         {{ field }}
                     </div>
                     {% endfor %}
@@ -35,16 +35,24 @@
                               <tr>
                                 <th scope="col">Ingrediente</th>
                                 <th scope="col">Dosaggio</th>
+                                <th scope="col">Zuccheri</th>
+                                <th scope="col">Grassi</th>
+                                <th scope="col">Acqua</th>
                                 <th scope="col">Costo</th>
                               </tr>
                             </thead>
-                            <tbody class="miscela-form">
-                                {{ formset.management_form }}
-                                {% for form in miscela_form %}
-                                <td class="sel-ingrediente">{{ form.ingrediente }}</td>
-                                <td>{{ form.dosaggio }}</td>
-                                <td id="id_form-{{forloop.counter0}}-costo"></td>
-                                {% endfor %}
+                            <tbody id="miscela-body">
+                                <tr class="miscela-row">
+                                    {{ formset.management_form }}
+                                    {% for form in miscela_form %}
+                                    <td class="sel-ingrediente">{{ form.ingrediente }}</td>
+                                    <td>{{ form.dosaggio }}</td>
+                                    <td id="id_form-{{forloop.counter0}}-zuccheri"></td>
+                                    <td id="id_form-{{forloop.counter0}}-grassi"></td>
+                                    <td id="id_form-{{forloop.counter0}}-acqua"></td>
+                                    <td id="id_form-{{forloop.counter0}}-costo"></td>
+                                    {% endfor %}
+                                </tr>
                             </tbody>
                             </table>
                     </div>
