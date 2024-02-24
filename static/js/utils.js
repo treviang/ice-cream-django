@@ -76,4 +76,43 @@ function aggiornaCampi(ingrediente, prefix) {
     document.getElementById(prefix + 'grassi').innerHTML = dosaggio * ingrediente.grassi;
     document.getElementById(prefix + 'acqua').innerHTML = dosaggio * ingrediente.acqua;
     document.getElementById(prefix + 'costo').innerHTML = dosaggio * ingrediente.costo;
+
+    calcolaTotali()
+}
+
+function calcolaTotali() {
+    var final = 0
+    var tfoot = document.querySelector("tfoot");
+    var howManyCols = tfoot.rows[0].cells.length;
+    var totalRow = tfoot.rows[tfoot.rows.length - 1];
+    for (var j = 1; j < howManyCols; j++) {
+        final = calcolaTotaliColonne(j);
+        totalRow.cells[j].innerText = final;
+    }
+}
+
+function calcolaTotaliColonne(numeroColonna) {
+
+    var totale = 0;
+    try {
+        var tableBody = document.querySelector("tbody");
+        var howManyRows = tableBody.rows.length;
+
+        for (var i = 0; i < howManyRows; i++) {
+
+            let valoreCella = 0;
+            const elementoCella = tableBody.rows[i].cells[numeroColonna].childNodes.item(0)
+
+            if (elementoCella.tagName == 'INPUT' && elementoCella.getAttribute("type") == 'number') {
+                valoreCella = Number(elementoCella.value);
+            } else {
+                valoreCella = Number(elementoCella.data);
+            }
+
+            if (!isNaN(valoreCella))
+                totale += valoreCella;
+        }
+    } finally {
+        return totale;
+    }
 }
