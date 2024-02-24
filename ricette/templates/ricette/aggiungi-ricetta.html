@@ -19,16 +19,21 @@
         </div>
 
         <div class="row mt-4">
-            <form id="form-container" method="post" class="row post-form" enctype="multipart/form-data">
+            <form id="form-container" method="post" class="post-form" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row col-12">
                     {% for field in ricetta_form %}
-                    <div class="col-4">
-                        {{ field }}
+                    <div class="fieldWrapper col-4">
+                        {{ field.label_tag }} {{ field }}
                     </div>
                     {% endfor %}
                 </div>
-                <div class="row mt-4">
+                <div class="row">
+                    <div>
+                        <button class="float-start btn btn-success my-4" type="button" id="add-ingrediente">Aggiungi Ingrediente</button>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="table-responsive">
                         <table id="ingredienti-table" class="table table-hover">
                             <thead class="table-dark">
@@ -57,18 +62,19 @@
                             <tfoot>
                                 <tr>
                                     <th scope="row">Totale</th>
-                                    <td>dsaff</td>
-                                    <td>dsadas</td>
-                                    <td>dsad</td>
-                                    <td>dsad</td>
-                                    <td>dsdsaad</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </tfoot>
                             </table>
                     </div>
                 </div>
-                <button class="btn btn-success my-4" type="button" id="add-ingrediente">Aggiungi Ingrediente</button>
-                <button class="btn btn-primary my-4" type="submit">Salva</button>
+                <div>
+                    <button class="btn btn-primary my-4 float-end" type="submit">Salva</button>
+                </div>
             </form>
         </div>
 
