@@ -22,26 +22,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
         totalForms.setAttribute('value', `${formNum + 1}`)
         aggiungiListenerSelectIngredienti();
+        aggiungiListenerInputDosaggio();
     }
 
     aggiungiListenerSelectIngredienti();
+    aggiungiListenerInputDosaggio();
 })
 
 function aggiungiListenerSelectIngredienti() {
     document.querySelectorAll('.sel-ingrediente').forEach(function (element) {
-        element.addEventListener('change', showOnChange);
+        element.addEventListener('change', onChangeIngrediente);
     })
 }
 
-function showOnChange(e) {
+function aggiungiListenerInputDosaggio() {
+    document.querySelectorAll('.inp-dosaggio').forEach(function (element) {
+        element.addEventListener('change', onChangeDosaggio);
+    })
+}
+
+function onChangeIngrediente(e) {
     var selectedOption = e.target.value;
 
-    let options = {
-        method: 'GET',
-        headers: {}
-    };
-
-    fetch('/get_ingrediente/' + selectedOption, options)
+    fetch('/get_ingrediente/' + selectedOption, {method: 'GET'})
         .then(response => response.json())
         .then(body => {
             const lastIndex = e.target.id.lastIndexOf('-');
@@ -50,6 +53,19 @@ function showOnChange(e) {
             aggiornaCampi(body[0], prefix);
         });
 
+}
+
+function onChangeDosaggio(e) {
+    const lastIndex = e.target.id.lastIndexOf('-');
+    let prefix = e.target.id.slice(0, lastIndex + 1);
+
+    var selectedValue = document.getElementById(prefix+'ingrediente').value;
+
+    fetch('/get_ingrediente/' + selectedValue, {method: 'GET'})
+        .then(response => response.json())
+        .then(body => {
+            aggiornaCampi(body[0], prefix);
+        });
 }
 
 function aggiornaCampi(ingrediente, prefix) {
