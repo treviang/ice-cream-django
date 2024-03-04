@@ -10,14 +10,19 @@ import logging
 logger = logging.getLogger(__name__)
 
 def index(request):
-    ricette = Ricetta.objects.order_by("data_creazione")[:5]
+    ricette = Ricetta.objects.order_by("data_creazione")
     context = {"ricette": ricette}
     return render(request, "ricette/index.html", context)
 
 def ingredienti(request):
-    ingredienti = Ingrediente.objects.order_by("data_creazione")[:5]
+    ingredienti = Ingrediente.objects.order_by("data_creazione")
     context = {"ingredienti": ingredienti}
     return render(request, "ricette/ingredienti.html", context)
+
+def elimina_ricetta(request, codice):
+    ricetta = Ricetta.objects.get(codice = codice)
+    ricetta.delete()
+    return index(request)
 
 def aggiungi_ricetta(request):
     if request.method == "POST":
