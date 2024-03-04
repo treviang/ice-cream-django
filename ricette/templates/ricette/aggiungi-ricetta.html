@@ -50,6 +50,9 @@
                                 <tr class="miscela-row">
                                     {{ formset.management_form }}
                                     {% for form in miscela_form %}
+                                    {% for hidden in forms.hidden_fields %}
+                                        {{ hidden }}
+                                    {% endfor %}
                                     <td class="sel-ingrediente">{{ form.ingrediente }}</td>
                                     <td class="inp-dosaggio">{{ form.dosaggio }}</td>
                                     <td id="id_form-{{forloop.counter0}}-zuccheri"></td>
@@ -75,15 +78,14 @@
                 <div>
                     <button class="btn btn-primary my-4 float-end" type="submit">Salva</button>
                 </div>
+                <input type="hidden" name="form-TOTAL_FORMS" value="1" id="id_form-TOTAL_FORMS">
+                <input type="hidden" name="form-INITIAL_FORMS" value="0" id="id_form-INITIAL_FORMS">
+                <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
+                <input type="hidden" name="form-MAX_NUM_FORMS" value="20" id="id_form-MAX_NUM_FORMS">
             </form>
         </div>
 
     </div>
-
-    <input type="hidden" name="form-TOTAL_FORMS" value="1" id="id_form-TOTAL_FORMS">
-    <input type="hidden" name="form-INITIAL_FORMS" value="0" id="id_form-INITIAL_FORMS">
-    <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
-    <input type="hidden" name="form-MAX_NUM_FORMS" value="20" id="id_form-MAX_NUM_FORMS">
 
 </body>
 
