@@ -26,7 +26,7 @@
                     {% for ricetta in ricette %}
                     <li class="list-group-item list-group-item-action">
                         <div class="d-flex">
-                            <a href="/ricetta/{{ ricetta.codice }}/">{{ricetta.codice}} - {{ricetta.descrizione}}</a>
+                            <a href="/ricette/modifica/{{ ricetta.codice }}">{{ricetta.codice}} - {{ricetta.descrizione}}</a>
                             <div class="ms-auto">
                                 <form action="{% url 'elimina_ricetta' codice=ricetta.codice %}" method="post">
                                     {% csrf_token %}
