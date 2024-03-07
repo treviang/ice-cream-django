@@ -15,7 +15,11 @@
     {% include 'ricette/header.html' with page="home" %}
     <div class="container-fluid">
         <div class="row mt-4">
-            <h3>Aggiungi Ricetta</h3>
+            {% if '/modifica/' in request.path %}
+                <h3>Modifica Ricetta</h3>
+            {% else %}    
+                <h3>Aggiungi Ricetta</h3>
+            {% endif %}
         </div>
 
         <div class="row mt-4">
