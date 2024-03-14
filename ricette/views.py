@@ -1,7 +1,8 @@
+from django.forms import formset_factory, inlineformset_factory, modelformset_factory
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
-from ricette.forms import MiscelaFormSet, RicettaForm
+from ricette.forms import MiscelaForm, RicettaForm
 from .models import Ingrediente, Miscela, Ricetta
 from django.views import generic
 from django.contrib import messages
@@ -43,13 +44,17 @@ def aggiungi_ricetta(request, codice=None):
                 messages.error(request, 'Errore nel salvataggio del form')
             return redirect("index")
         ricetta_form = RicettaForm()
+        MiscelaFormSet = formset_factory(MiscelaForm, extra=1)
         miscela_form_set = MiscelaFormSet()
         ingredienti = Ingrediente.objects.all()
         return render(request, template_name="ricette/aggiungi-ricetta.html", context={'ricetta_form':ricetta_form, 'miscela_form':miscela_form_set, 'ingredienti': ingredienti})
     else:
         ricetta = Ricetta.objects.get(codice = codice)
         ricetta_form = RicettaForm(instance=ricetta)
-        miscela_form_set = MiscelaFormSet()
+        qset = Miscela.objects.filter(ricetta_id=codice)
+        MiscelaFormSet = inlineformset_factory(parent_model=Ricetta, model=Miscela, form=MiscelaForm, extra=1)
+        miscela_form_set = MiscelaFormSet(queryset=qset, instance=ricetta, prefix='form')
+        logger.error(miscela_form_set)
         ingredienti = Ingrediente.objects.all()
         return render(request, template_name="ricette/aggiungi-ricetta.html", context={'ricetta_form':ricetta_form, 'miscela_form':miscela_form_set, 'ingredienti': ingredienti})
 

@@ -24,4 +24,3 @@ class MiscelaForm(forms.ModelForm):
     class Meta:
         model = Miscela
         fields = ('ingrediente', 'dosaggio')
-MiscelaFormSet = forms.formset_factory(MiscelaForm, extra=1)

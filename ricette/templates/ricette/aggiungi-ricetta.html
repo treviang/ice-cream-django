@@ -51,11 +51,11 @@
                                 </tr>
                             </thead>
                             <tbody id="miscela-body">
+                                {{ formset.management_form }}
+                                {% for form in miscela_form %}
                                 <tr class="miscela-row">
-                                    {{ formset.management_form }}
-                                    {% for form in miscela_form %}
                                     {% for hidden in forms.hidden_fields %}
-                                        {{ hidden }}
+                                    {{ hidden }}
                                     {% endfor %}
                                     <td class="sel-ingrediente">{{ form.ingrediente }}</td>
                                     <td class="inp-dosaggio">{{ form.dosaggio }}</td>
@@ -63,8 +63,8 @@
                                     <td id="id_form-{{forloop.counter0}}-grassi"></td>
                                     <td id="id_form-{{forloop.counter0}}-acqua"></td>
                                     <td id="id_form-{{forloop.counter0}}-costo"></td>
-                                    {% endfor %}
                                 </tr>
+                                {% endfor %}
                             </tbody>
                             <tfoot>
                                 <tr>
