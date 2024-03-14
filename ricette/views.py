@@ -1,6 +1,6 @@
 from django.forms import formset_factory, inlineformset_factory, modelformset_factory
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from ricette.forms import MiscelaForm, RicettaForm
 from .models import Ingrediente, Miscela, Ricetta
@@ -26,23 +26,30 @@ def elimina_ricetta(request, codice):
     return index(request)
 
 def aggiungi_ricetta(request, codice=None):
-    if codice is None:
-        if request.method == "POST":
+    if request.method == "POST":
+        MiscelaFormSet = formset_factory(MiscelaForm, extra=1)
+        if codice is None:
             ricetta_form = RicettaForm(request.POST)
-            logger.error(request.POST)
-            miscela_form_set = MiscelaFormSet(request.POST, request.FILES)
-            if ricetta_form.is_valid():
-                ricetta_form.save()
-                for index, form in enumerate(miscela_form_set):
-                    miscela = Miscela()
-                    miscela.ingrediente = Ingrediente.objects.get(codice=form.data['form-'+str(index)+'-ingrediente'])
-                    miscela.ricetta = Ricetta.objects.get(codice=ricetta_form['codice'].value())
-                    miscela.dosaggio = form.data['form-'+str(index)+'-dosaggio']
-                    miscela.save()
-                messages.success(request, ('La ricetta è stata salvata correttamente!'))
-            else:
-                messages.error(request, 'Errore nel salvataggio del form')
-            return redirect("index")
+        else:
+            ricetta_instance = get_object_or_404(Ricetta, codice=codice)
+            ricetta_form = RicettaForm(request.POST, instance=ricetta_instance)
+        
+        miscela_form_set = MiscelaFormSet(request.POST, request.FILES)
+        if ricetta_form.is_valid():
+            ricetta_form.save()
+            miscele = Miscela.objects.filter(ricetta = ricetta_form['codice'].value())
+            miscele.delete()
+            for index, form in enumerate(miscela_form_set):
+                miscela = Miscela()
+                miscela.ingrediente = Ingrediente.objects.get(codice=form.data['form-'+str(index)+'-ingrediente'])
+                miscela.ricetta = Ricetta.objects.get(codice=ricetta_form['codice'].value())
+                miscela.dosaggio = form.data['form-'+str(index)+'-dosaggio']
+                miscela.save()
+            messages.success(request, ('La ricetta è stata salvata correttamente!'))
+        else:
+            messages.error(request, 'Errore nel salvataggio del form')
+        return redirect("index")
+    if codice is None:
         ricetta_form = RicettaForm()
         MiscelaFormSet = formset_factory(MiscelaForm, extra=1)
         miscela_form_set = MiscelaFormSet()
