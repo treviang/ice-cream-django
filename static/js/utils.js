@@ -75,13 +75,25 @@ function onChangeDosaggio(e) {
 function aggiornaCampi(ingrediente, prefix) {
 
     let dosaggio = Number(document.getElementById(prefix + 'dosaggio').value);
-
-    document.getElementById(prefix + 'zuccheri').innerHTML = dosaggio * ingrediente.zuccheri;
-    document.getElementById(prefix + 'grassi').innerHTML = dosaggio * ingrediente.grassi;
-    document.getElementById(prefix + 'acqua').innerHTML = dosaggio * ingrediente.acqua;
-    document.getElementById(prefix + 'costo').innerHTML = dosaggio * ingrediente.costo;
-
+    
+    document.getElementById(prefix + 'zuccheri').innerHTML = calcolaPercentuale(dosaggio, ingrediente.zuccheri);
+    document.getElementById(prefix + 'grassi').innerHTML = calcolaPercentuale(dosaggio, ingrediente.grassi);
+    document.getElementById(prefix + 'SIng').innerHTML = calcolaPercentuale(dosaggio, ingrediente.SIng);
+    document.getElementById(prefix + 'altri-solidi').innerHTML = calcolaPercentuale(dosaggio, ingrediente.altri_solidi);
+    document.getElementById(prefix + 'acqua').innerHTML = calcolaPercentuale(dosaggio, ingrediente.acqua);
+    document.getElementById(prefix + 'costo').innerHTML = calcolaValuta(dosaggio, ingrediente.costo);
+    
     calcolaTotali()
+}
+
+function calcolaPercentuale(dosaggio, valore) {
+    const percentuale = ' <span>%</span>'
+    return (dosaggio * valore).toFixed(2) + percentuale;
+}
+
+function calcolaValuta(dosaggio, valore) {
+    const euro = ' <span>\u20AC</span>'
+    return (dosaggio * valore).toFixed(4) + euro;
 }
 
 function calcolaTotali() {
