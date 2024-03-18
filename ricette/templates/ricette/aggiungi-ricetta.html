@@ -46,6 +46,8 @@
                                     <th scope="col">Dosaggio</th>
                                     <th scope="col">Zuccheri</th>
                                     <th scope="col">Grassi</th>
+                                    <th scope="col">S.I.n.g</th>
+                                    <th scope="col">Altri solidi</th>
                                     <th scope="col">Acqua</th>
                                     <th scope="col">Costo</th>
                                 </tr>
@@ -61,6 +63,8 @@
                                     <td class="inp-dosaggio">{{ form.dosaggio }}</td>
                                     <td id="id_form-{{forloop.counter0}}-zuccheri"></td>
                                     <td id="id_form-{{forloop.counter0}}-grassi"></td>
+                                    <td id="id_form-{{forloop.counter0}}-SIng"></td>
+                                    <td id="id_form-{{forloop.counter0}}-altri-solidi"></td>
                                     <td id="id_form-{{forloop.counter0}}-acqua"></td>
                                     <td id="id_form-{{forloop.counter0}}-costo"></td>
                                 </tr>
@@ -69,6 +73,8 @@
                             <tfoot>
                                 <tr>
                                     <th scope="row">Totale</th>
+                                    <td></td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
