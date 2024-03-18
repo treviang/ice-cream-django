@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function aggiungiListenerSelectIngredienti() {
     document.querySelectorAll('.sel-ingrediente').forEach(function (element) {
         element.addEventListener('change', onChangeIngrediente);
+        aggiornaIngredienti(element.lastElementChild);
     })
 }
 
@@ -42,17 +43,22 @@ function aggiungiListenerInputDosaggio() {
 }
 
 function onChangeIngrediente(e) {
-    var selectedOption = e.target.value;
+    aggiornaIngredienti(e.target);
+}
 
-    fetch('/get_ingrediente/' + selectedOption, {method: 'GET'})
-        .then(response => response.json())
-        .then(body => {
-            const lastIndex = e.target.id.lastIndexOf('-');
-            let prefix = e.target.id.slice(0, lastIndex + 1);
+function aggiornaIngredienti(element) {
+    var selectedOption = element.value;
 
-            aggiornaCampi(body[0], prefix);
-        });
-
+    if(selectedOption) {
+        fetch('/get_ingrediente/' + selectedOption, {method: 'GET'})
+            .then(response => response.json())
+            .then(body => {
+                const lastIndex = element.id.lastIndexOf('-');
+                let prefix = element.id.slice(0, lastIndex + 1);
+    
+                aggiornaCampi(body[0], prefix);
+            });
+    }
 }
 
 function onChangeDosaggio(e) {
