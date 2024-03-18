@@ -59,7 +59,7 @@ def aggiungi_ricetta(request, codice=None):
         ricetta = Ricetta.objects.get(codice = codice)
         ricetta_form = RicettaForm(instance=ricetta)
         qset = Miscela.objects.filter(ricetta_id=codice)
-        MiscelaFormSet = inlineformset_factory(parent_model=Ricetta, model=Miscela, form=MiscelaForm, extra=1)
+        MiscelaFormSet = inlineformset_factory(parent_model=Ricetta, model=Miscela, form=MiscelaForm, extra=0)
         miscela_form_set = MiscelaFormSet(queryset=qset, instance=ricetta, prefix='form')
         logger.error(miscela_form_set)
         ingredienti = Ingrediente.objects.all()

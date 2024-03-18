@@ -3,11 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let miscelaRow = document.querySelectorAll(".miscela-row")
     let addIngrediente = document.querySelector("#add-ingrediente")
     let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
-    let tabella = document.getElementById('ingredienti-table');
-
 
     let formNum = miscelaRow.length - 1
     addIngrediente.addEventListener('click', addForm)
+    totalForms.setAttribute('value', `${formNum + 1}`)
 
     function addForm(e) {
         e.preventDefault()
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         formNum++
         newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
-        console.log(tabella.tbody)
         miscelaBody.appendChild(newForm)
 
         totalForms.setAttribute('value', `${formNum + 1}`)
