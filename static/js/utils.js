@@ -81,9 +81,19 @@ function aggiornaCampi(ingrediente, prefix) {
     document.getElementById(prefix + 'SIng').innerHTML = calcolaPercentuale(dosaggio, ingrediente.SIng);
     document.getElementById(prefix + 'altri-solidi').innerHTML = calcolaPercentuale(dosaggio, ingrediente.altri_solidi);
     document.getElementById(prefix + 'acqua').innerHTML = calcolaPercentuale(dosaggio, ingrediente.acqua);
+    document.getElementById(prefix + 'PAC').innerHTML = calcolaDefault(dosaggio, ingrediente.PAC);
+    document.getElementById(prefix + 'POD').innerHTML = calcolaDefault(dosaggio, ingrediente.POD);
     document.getElementById(prefix + 'costo').innerHTML = calcolaValuta(dosaggio, ingrediente.costo);
     
     calcolaTotali()
+}
+
+function calcolaDefault(dosaggio, valore) {
+    return ((dosaggio * valore)/100).toFixed(2);
+}
+
+function formattaDefault(valore) {
+    return valore.toFixed(2) ;
 }
 
 function calcolaPercentuale(dosaggio, valore) {
@@ -118,7 +128,7 @@ function calcolaTotali() {
         } else if (totalRow.cells[j].className === 'valuta') {
             totalRow.cells[j].innerText = formattaTotaleValuta(final);
         } else {
-            totalRow.cells[j].innerText = final;
+            totalRow.cells[j].innerText = formattaDefault(final);
         }
     }
 }
@@ -137,6 +147,8 @@ function calcolaTotaliColonne(numeroColonna) {
 
             if (elementoCella.tagName == 'INPUT' && elementoCella.getAttribute("type") == 'number') {
                 valoreCella = Number(elementoCella.value);
+            } else if (elementoCella.nextSibling.tagName == 'INPUT' && elementoCella.nextSibling.getAttribute("type") == 'number') {
+                valoreCella = Number(elementoCella.nextSibling.value);
             } else {
                 valoreCella = Number(elementoCella.data);
             }

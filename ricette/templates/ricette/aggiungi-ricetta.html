@@ -42,6 +42,10 @@
                         <table id="ingredienti-table" class="table table-hover">
                             <thead class="table-dark">
                                 <tr>
+                                    <th colspan="2" class="text-center table-success">Miscela</th>
+                                    <th colspan="8" class="text-center table-primary">Bilanciamento</th>
+                                </tr>
+                                <tr>
                                     <th scope="col">Ingrediente</th>
                                     <th scope="col">Dosaggio</th>
                                     <th scope="col">Zuccheri</th>
@@ -49,6 +53,8 @@
                                     <th scope="col">S.I.n.g</th>
                                     <th scope="col">Altri solidi</th>
                                     <th scope="col">Acqua</th>
+                                    <th scope="col">PAC</th>
+                                    <th scope="col">POD</th>
                                     <th scope="col">Costo</th>
                                 </tr>
                             </thead>
@@ -60,12 +66,17 @@
                                     {{ hidden }}
                                     {% endfor %}
                                     <td class="sel-ingrediente">{{ form.ingrediente }}</td>
-                                    <td class="inp-dosaggio">{{ form.dosaggio }}</td>
+                                    <td class="inp-dosaggio input-group">
+                                        {{ form.dosaggio }}
+                                        <span class="input-group-text" id="dosaggio-addon">%</span>
+                                    </td>
                                     <td id="id_form-{{forloop.counter0}}-zuccheri"></td>
                                     <td id="id_form-{{forloop.counter0}}-grassi"></td>
                                     <td id="id_form-{{forloop.counter0}}-SIng"></td>
                                     <td id="id_form-{{forloop.counter0}}-altri-solidi"></td>
                                     <td id="id_form-{{forloop.counter0}}-acqua"></td>
+                                    <td id="id_form-{{forloop.counter0}}-PAC"></td>
+                                    <td id="id_form-{{forloop.counter0}}-POD"></td>
                                     <td id="id_form-{{forloop.counter0}}-costo"></td>
                                 </tr>
                                 {% endfor %}
@@ -79,6 +90,8 @@
                                     <td class="percentuale"></td>
                                     <td class="percentuale"></td>
                                     <td class="percentuale"></td>
+                                    <td></td>
+                                    <td></td>
                                     <td class="valuta"></td>
                                 </tr>
                             </tfoot>
