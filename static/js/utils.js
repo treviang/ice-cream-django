@@ -91,9 +91,19 @@ function calcolaPercentuale(dosaggio, valore) {
     return (dosaggio * valore).toFixed(2) + percentuale;
 }
 
+function formattaTotalePercentuale(valore) {
+    const percentuale = ' %'
+    return valore.toFixed(2) + percentuale;
+}
+
 function calcolaValuta(dosaggio, valore) {
     const euro = ' <span>\u20AC</span>'
     return (dosaggio * valore).toFixed(4) + euro;
+}
+
+function formattaTotaleValuta(valore) {
+    const euro = ' \u20AC'
+    return valore.toFixed(4) + euro;
 }
 
 function calcolaTotali() {
@@ -103,7 +113,13 @@ function calcolaTotali() {
     var totalRow = tfoot.rows[tfoot.rows.length - 1];
     for (var j = 1; j < howManyCols; j++) {
         final = calcolaTotaliColonne(j);
-        totalRow.cells[j].innerText = final;
+        if (totalRow.cells[j].className === 'percentuale') {
+            totalRow.cells[j].innerText = formattaTotalePercentuale(final);
+        } else if (totalRow.cells[j].className === 'valuta') {
+            totalRow.cells[j].innerText = formattaTotaleValuta(final);
+        } else {
+            totalRow.cells[j].innerText = final;
+        }
     }
 }
 
