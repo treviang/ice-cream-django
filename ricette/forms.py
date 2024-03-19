@@ -21,6 +21,7 @@ class MiscelaForm(forms.ModelForm):
                 'class': 'form-control'
         })
         self.fields['ingrediente'].widget.attrs['class'] = 'form-select'
+        self.fields['ingrediente'].widget.attrs['style'] = 'width:auto;'
         self.fields['dosaggio'].widget.attrs['min'] = '0.01'
         self.fields['dosaggio'].widget.attrs['max'] = '100'
     class Meta:

@@ -73,26 +73,26 @@
                                     {% for hidden in forms.hidden_fields %}
                                     {{ hidden }}
                                     {% endfor %}
-                                    <td class="sel-ingrediente">{{ form.ingrediente }}</td>
+                                    <td class="sel-ingrediente" style="width: 100px;">{{ form.ingrediente }}</td>
                                     <td class="inp-dosaggio input-group">
                                         {{ form.dosaggio }}
                                         <span class="input-group-text" id="dosaggio-addon">%</span>
                                     </td>
-                                    <td id="id_form-{{forloop.counter0}}-zuccheri"></td>
-                                    <td id="id_form-{{forloop.counter0}}-grassi"></td>
-                                    <td id="id_form-{{forloop.counter0}}-SIng"></td>
-                                    <td id="id_form-{{forloop.counter0}}-altri-solidi"></td>
-                                    <td id="id_form-{{forloop.counter0}}-acqua"></td>
-                                    <td id="id_form-{{forloop.counter0}}-PAC"></td>
-                                    <td id="id_form-{{forloop.counter0}}-POD"></td>
-                                    <td id="id_form-{{forloop.counter0}}-costo"></td>
-                                    <td id="id_form-{{forloop.counter0}}-valore-energetico"></td>
+                                    <td id="id_form-{{forloop.counter0}}-zuccheri" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-grassi" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-SIng" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-altri-solidi" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-acqua" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-PAC" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-POD" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-costo" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-valore-energetico" style="vertical-align: middle"></td>
                                     <!-- <td id="id_form-{{forloop.counter0}}-grassi"></td> -->
-                                    <td id="id_form-{{forloop.counter0}}-grassi-saturi"></td>
-                                    <td id="id_form-{{forloop.counter0}}-carboidrati"></td>
-                                    <td id="id_form-{{forloop.counter0}}-carboidrati-zuccheri"></td>
-                                    <td id="id_form-{{forloop.counter0}}-proteine"></td>
-                                    <td id="id_form-{{forloop.counter0}}-sale"></td>
+                                    <td id="id_form-{{forloop.counter0}}-grassi-saturi" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-carboidrati" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-carboidrati-zuccheri" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-proteine" style="vertical-align: middle"></td>
+                                    <td id="id_form-{{forloop.counter0}}-sale" style="vertical-align: middle"></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
