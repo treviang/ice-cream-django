@@ -88,7 +88,7 @@ function aggiornaCampi(ingrediente, prefix) {
 
 function calcolaPercentuale(dosaggio, valore) {
     const percentuale = ' <span>%</span>'
-    return (dosaggio * valore).toFixed(2) + percentuale;
+    return ((dosaggio * valore)/100).toFixed(2) + percentuale;
 }
 
 function formattaTotalePercentuale(valore) {
@@ -98,7 +98,7 @@ function formattaTotalePercentuale(valore) {
 
 function calcolaValuta(dosaggio, valore) {
     const euro = ' <span>\u20AC</span>'
-    return (dosaggio * valore).toFixed(4) + euro;
+    return ((dosaggio * valore)/100).toFixed(4) + euro;
 }
 
 function formattaTotaleValuta(valore) {
