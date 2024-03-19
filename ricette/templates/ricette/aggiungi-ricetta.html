@@ -44,6 +44,7 @@
                                 <tr>
                                     <th colspan="2" class="text-center table-success">Miscela</th>
                                     <th colspan="8" class="text-center table-primary">Bilanciamento</th>
+                                    <th colspan="6" class="text-center table-warning">Valori nutrizionali medi per 100g</th>
                                 </tr>
                                 <tr>
                                     <th scope="col">Ingrediente</th>
@@ -56,6 +57,13 @@
                                     <th scope="col">PAC</th>
                                     <th scope="col">POD</th>
                                     <th scope="col">Costo</th>
+                                    <th scope="col">Valore Energetico</th>
+                                    <!-- <th scope="col">Grassi</th> -->
+                                    <th scope="col">Di cui saturi</th>
+                                    <th scope="col">Carboidrati</th>
+                                    <th scope="col">Di cui zuccheri</th>
+                                    <th scope="col">Proteine</th>
+                                    <th scope="col">Sale</th>
                                 </tr>
                             </thead>
                             <tbody id="miscela-body">
@@ -78,6 +86,13 @@
                                     <td id="id_form-{{forloop.counter0}}-PAC"></td>
                                     <td id="id_form-{{forloop.counter0}}-POD"></td>
                                     <td id="id_form-{{forloop.counter0}}-costo"></td>
+                                    <td id="id_form-{{forloop.counter0}}-valore-energetico"></td>
+                                    <!-- <td id="id_form-{{forloop.counter0}}-grassi"></td> -->
+                                    <td id="id_form-{{forloop.counter0}}-grassi-saturi"></td>
+                                    <td id="id_form-{{forloop.counter0}}-carboidrati"></td>
+                                    <td id="id_form-{{forloop.counter0}}-carboidrati-zuccheri"></td>
+                                    <td id="id_form-{{forloop.counter0}}-proteine"></td>
+                                    <td id="id_form-{{forloop.counter0}}-sale"></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -93,6 +108,12 @@
                                     <td></td>
                                     <td></td>
                                     <td class="valuta"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </tfoot>
                             </table>

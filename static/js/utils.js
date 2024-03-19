@@ -84,7 +84,14 @@ function aggiornaCampi(ingrediente, prefix) {
     document.getElementById(prefix + 'PAC').innerHTML = calcolaDefault(dosaggio, ingrediente.PAC);
     document.getElementById(prefix + 'POD').innerHTML = calcolaDefault(dosaggio, ingrediente.POD);
     document.getElementById(prefix + 'costo').innerHTML = calcolaValuta(dosaggio, ingrediente.costo);
-    
+    document.getElementById(prefix + 'valore-energetico').innerHTML = calcolaDefault(dosaggio, ingrediente.valore_energetico);
+    // document.getElementById(prefix + 'grassi').innerHTML = calcolaDefault(dosaggio, ingrediente.grassi);
+    document.getElementById(prefix + 'grassi-saturi').innerHTML = calcolaDefault(dosaggio, ingrediente.grassi_saturi);
+    document.getElementById(prefix + 'carboidrati').innerHTML = calcolaDefault(dosaggio, ingrediente.carboidrati);
+    document.getElementById(prefix + 'carboidrati-zuccheri').innerHTML = calcolaDefault(dosaggio, ingrediente.carboidrati_zuccheri);
+    document.getElementById(prefix + 'proteine').innerHTML = calcolaDefault(dosaggio, ingrediente.proteine);
+    document.getElementById(prefix + 'sale').innerHTML = calcolaDefault(dosaggio, ingrediente.sale);
+
     calcolaTotali()
 }
 
@@ -147,7 +154,7 @@ function calcolaTotaliColonne(numeroColonna) {
 
             if (elementoCella.tagName == 'INPUT' && elementoCella.getAttribute("type") == 'number') {
                 valoreCella = Number(elementoCella.value);
-            } else if (elementoCella.nextSibling.tagName == 'INPUT' && elementoCella.nextSibling.getAttribute("type") == 'number') {
+            } else if (elementoCella.nextSibling && elementoCella.nextSibling.tagName == 'INPUT' && elementoCella.nextSibling.getAttribute("type") == 'number') {
                 valoreCella = Number(elementoCella.nextSibling.value);
             } else {
                 valoreCella = Number(elementoCella.data);
