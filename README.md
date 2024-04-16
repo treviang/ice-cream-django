@@ -1,2 +1,2 @@
-# doretto
+# gelati
 Progetto per azienda Gelati
