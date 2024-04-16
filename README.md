@@ -1,2 +1,2 @@
 # doretto
-Progetto per azienda Doretto Gelati
+Progetto per azienda Gelati
